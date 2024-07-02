@@ -1,14 +1,15 @@
-import AddCircleIcon from "@mui/icons-material/AddCircle";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import { IconButton } from "@mui/material";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { AppDispatch, RootState } from "../../../core/store.interface";
+import { Title } from "../../../shared/components/Title";
 import { UsersTable } from "../components/Table";
 import { COLUMNS } from "../configs/tableConfig";
-import { User, Users } from "../state/usersSlice.interface";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState, AppDispatch } from "../../../core/store.interface";
 import { fetchUsers } from "../state/usersSlice";
-import { useEffect } from "react";
+import { User, Users } from "../state/usersSlice.interface";
 
 export function UsersLayout() {
   const dispatch: AppDispatch = useDispatch();
@@ -29,20 +30,18 @@ export function UsersLayout() {
 
   return (
     <>
-      <div className="flex justify-between p-4">
-        <h1 className="text-3xl font-bold">Usuários</h1>
+      <Title title="Lista de Usuários">
         <div>
-          <IconButton color="default" aria-label="delete">
-            <AddCircleIcon />
-          </IconButton>
-          <IconButton color="default" aria-label="delete">
-            <EditIcon />
-          </IconButton>
+          <Link to="edition">
+            <IconButton color="default" aria-label="edit">
+              <EditIcon />
+            </IconButton>
+          </Link>
           <IconButton color="default" aria-label="delete">
             <DeleteIcon />
           </IconButton>
         </div>
-      </div>
+      </Title>
       <div className="p-4">
         <UsersTable<User>
           columnsDefinition={COLUMNS}
