@@ -10,7 +10,7 @@ export function UsersTable<R>({
   rowsData,
   columnsDefinition,
   onSelected,
-}: Props<R>) {
+}: Readonly<Props<R>>) {
   const handleSelecteds = (selection: number[]) => {
     onSelected(selection);
   };

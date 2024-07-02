@@ -3,11 +3,25 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import { IconButton } from "@mui/material";
 import { UsersTable } from "../components/Table";
-import { COLUMNS, ROWS, Rows } from "../configs/tableConfig";
-import { useState } from "react";
+import { COLUMNS } from "../configs/tableConfig";
+import { User, Users } from "../state/usersSlice.interface";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState, AppDispatch } from "../../../core/store.interface";
+import { fetchUsers } from "../state/usersSlice";
+import { useEffect } from "react";
 
 export function UsersLayout() {
-  const [rows] = useState(ROWS);
+  const dispatch: AppDispatch = useDispatch();
+  const users = useSelector((state: RootState) => state.users.entities);
+  const status = useSelector((state: RootState) => state.users.status);
+  const error = useSelector((state: RootState) => state.users.error);
+
+  useEffect(() => {
+    if (status === "idle") {
+      dispatch(fetchUsers());
+    }
+    console.log(Object.values(users));
+  }, [status, dispatch, error, users]);
 
   const handleSelected = (selected: number[]) => {
     console.log(selected);
@@ -30,9 +44,9 @@ export function UsersLayout() {
         </div>
       </div>
       <div className="p-4">
-        <UsersTable<Rows>
+        <UsersTable<User>
           columnsDefinition={COLUMNS}
-          rowsData={rows}
+          rowsData={Object.values(users) as Users}
           onSelected={handleSelected}
         />
       </div>
