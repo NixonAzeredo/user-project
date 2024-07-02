@@ -4,6 +4,8 @@ import { IconButton } from "@mui/material";
 import { useState } from "react";
 import { UsersTable } from "../components/Table";
 import { COLUMNS, ROWS, Rows } from "../configs/tableConfig";
+import { Title } from "../../../shared/components/Title";
+import { Link } from "react-router-dom";
 
 export function UsersLayout() {
   const [rows] = useState(ROWS);
@@ -14,17 +16,18 @@ export function UsersLayout() {
 
   return (
     <>
-      <div className="flex justify-between p-4">
-        <h1 className="text-3xl font-bold">Usuários</h1>
+      <Title title="Lista de Usuários">
         <div>
-          <IconButton color="default" aria-label="edit">
-            <EditIcon />
-          </IconButton>
+          <Link to="edition">
+            <IconButton color="default" aria-label="edit">
+              <EditIcon />
+            </IconButton>
+          </Link>
           <IconButton color="default" aria-label="delete">
             <DeleteIcon />
           </IconButton>
         </div>
-      </div>
+      </Title>
       <div className="p-4">
         <UsersTable<Rows>
           columnsDefinition={COLUMNS}
