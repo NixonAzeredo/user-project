@@ -5,23 +5,28 @@ export interface Rows {
   name: string;
   userName: string;
   email: string;
-  address: {
-    street: string;
-    suite: string;
-    city: string;
-    zipcode: string;
-    geo: {
-      lat: string;
-      lng: string;
-    };
-  };
+  address: Address;
   phone: string;
   website: string;
-  company: {
-    name: string;
-    catchPhrase: string;
-    bs: string;
+  company: Company;
+}
+
+export interface Address{
+  street: string;
+  suite: string;
+  city: string;
+  zipcode: string;
+  geo: {
+    lat: string;
+    lng: string;
   };
+
+}
+
+export interface Company{
+  name: string;
+  catchPhrase: string;
+  bs: string;
 }
 
 export const COLUMNS: GridColDef[] = [
@@ -38,6 +43,22 @@ export const COLUMNS: GridColDef[] = [
     headerName: "Celular",
     width: 130,
   },
+  {
+    field: "website",
+    headerName: "WebSite",
+    width: 160,
+  },
+  {
+    field: "company",
+    headerName: "Empresa",
+    width: 160,
+    valueGetter: (params: Company) => {
+      return params.name;
+    }
+  },
+  {field: "address", headerName: "Endereço", width: 400, valueGetter: (params: Address) => {
+    return `${params.street}, ${params.suite}, ${params.city} - ${params.zipcode}`;
+  }}
 ];
 
 export const ROWS: Rows[] = [];
