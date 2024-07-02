@@ -1,12 +1,7 @@
-import Button from "@mui/material/Button";
+import { HomeLayout } from "./modules/home/layout";
 
 function App() {
-  return (
-    <>
-      <Button variant="contained">Hello world</Button>
-      <h1 className="text-3xl font-bold underline">Hello world!</h1>;
-    </>
-  );
+  return <HomeLayout />;
 }
 
 export default App;
