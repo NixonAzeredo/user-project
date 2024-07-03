@@ -41,14 +41,14 @@ const UserForm = ({
 
   return (
     <form className="p-4" onSubmit={handleSubmit(onSubmit)}>
-      <div className="grid grid-cols-3 gap-4">
-        <div className="col-span-3">
+      <div className="grid grid-cols-4 gap-4">
+        <div className="col-span-4">
           <h2 className="text-lg font-semibold text-gray-800 mb-2">
             Dados pessoais
           </h2>{" "}
           <hr />
         </div>
-        <div className="col-span-1">
+        <div className="col-span-2 sm:col-span-2">
           <TextField
             autoComplete="on"
             id="name"
@@ -69,7 +69,7 @@ const UserForm = ({
             </p>
           )}
         </div>
-        <div className="col-span-1">
+        <div className="col-span-2 sm:col-span-2">
           <TextField
             autoComplete="on"
             id="username"
@@ -111,7 +111,7 @@ const UserForm = ({
             </p>
           )}
         </div>
-        <div className="col-span-1">
+        <div className="col-span-2 sm:col-span-2">
           <TextField
             autoComplete="on"
             id="email"
@@ -132,7 +132,7 @@ const UserForm = ({
             </p>
           )}
         </div>
-        <div className="col-span-2">
+        <div className="col-span-1 sm:col-span-1">
           <TextField
             autoComplete="on"
             id="website"
@@ -154,11 +154,11 @@ const UserForm = ({
             </p>
           )}
         </div>
-        <div className="col-span-3 mt-4">
+        <div className="col-span-4 mt-4">
           <h2 className="text-lg font-semibold text-gray-800 mb-2">Endereço</h2>{" "}
           <hr />
         </div>
-        <div className="col-span-1">
+        <div className="col-span-2">
           <TextField
             id="zipcode"
             label="CEP"
@@ -167,7 +167,7 @@ const UserForm = ({
             {...register("zipcode")}
           />
         </div>
-        <div className="col-span-1">
+        <div className="col-span-2">
           <TextField
             id="city"
             label="Cidade"
@@ -195,7 +195,7 @@ const UserForm = ({
           />
         </div>
 
-        <div className="col-span-3 mt-4">
+        <div className="col-span-4 mt-4">
           <h2 className="text-lg font-semibold text-gray-800 mb-2">Empresa</h2>{" "}
           <hr />
         </div>
@@ -208,7 +208,7 @@ const UserForm = ({
             {...register("companyName")}
           />
         </div>
-        <div className="col-span-1">
+        <div className="col-span-2 sm:col-span-2">
           <TextField
             id="catchPhrase"
             label="Frase de efeito"
@@ -226,7 +226,7 @@ const UserForm = ({
             {...register("bs")}
           />
         </div>
-        <div className="col-span-3 mt-4">
+        <div className="col-span-4 mt-4">
           <Button
             size="large"
             variant="contained"
@@ -237,7 +237,7 @@ const UserForm = ({
             {textBtnSend}
           </Button>
         </div>
-        <div className="col-span-3 mt-1 mb-2">
+        <div className="col-span-4 mt-1 mb-2">
           <Link to={routeBack}>
             <Button size="large" fullWidth type="button" color="inherit">
               {textBtnBack}
