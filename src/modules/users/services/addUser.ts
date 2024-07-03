@@ -1,16 +1,16 @@
 import axios from "axios";
-import { UserFormData } from "../components/Form/index.interface";
 import { USERURL } from "../configs/url.config";
-import { UserResponse } from "./addUser.interface";
+import { AddUserFormat } from "./addUser.interface";
+import { User } from "../state/usersSlice.interface";
 
 interface AddUserResponse {
   success: boolean;
-  user?: UserResponse;
+  user?: User;
   error?: string;
 }
 
 export async function addUserService(
-  newUser: UserFormData
+  newUser: AddUserFormat
 ): Promise<AddUserResponse> {
   try {
     const response = await axios.post(USERURL, newUser);

@@ -1,18 +1,17 @@
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { RootState } from "../../../../core/store.interface";
 import { Title } from "../../../../shared/components/Title";
-import { selectUserById } from "../../state/usersSlice.selector";
-import UserForm from "../Form";
-import { useEffect, useState } from "react";
-import { UserResponse } from "../../services/addUser.interface";
-import { UserFormData } from "../Form/index.interface";
 import { editUserService } from "../../services/editUser";
 import { updateUser } from "../../state/usersSlice";
 import { User } from "../../state/usersSlice.interface";
+import { selectUserById } from "../../state/usersSlice.selector";
+import UserForm from "../Form";
+import { UserFormData } from "../Form/index.interface";
 
 export function Edit() {
-  const [user, setUser] = useState<UserResponse | null>(null);
+  const [user, setUser] = useState<UserFormData | null>(null);
   const { userId } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -26,7 +25,6 @@ export function Edit() {
   useEffect(() => {
     if (selectedUser) {
       setUser({
-        id: selectedUser.id,
         name: selectedUser.name,
         email: selectedUser.email,
         phone: selectedUser.phone,
