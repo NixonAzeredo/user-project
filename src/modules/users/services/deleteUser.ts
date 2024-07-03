@@ -1,21 +1,19 @@
+
 import axios from "axios";
 import { USERURL } from "../configs/url.config";
-import { User } from "../state/usersSlice.interface";
 
-interface EditUserResponse {
+interface DeleteUserResponse {
   success: boolean;
-  user?: User;
   error?: string;
 }
 
-export async function editUserService(
-  userToEdit: User
-): Promise<EditUserResponse> {
+export async function deleteUserService(
+  id: number
+): Promise<DeleteUserResponse> {
   try {
-    const response = await axios.put(USERURL.concat("/", userToEdit.id.toString()), userToEdit);
+    await axios.delete(USERURL.concat("/", id.toString()))
     return {
       success: true,
-      user: response.data,
     };
   } catch (error) {
     if (axios.isAxiosError(error)) {

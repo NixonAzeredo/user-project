@@ -7,9 +7,10 @@ import { AppDispatch, RootState } from "../../../core/store.interface";
 import { Title } from "../../../shared/components/Title";
 import { UsersTable } from "../components/Table";
 import { COLUMNS } from "../configs/table.config";
-import { fetchUsers } from "../state/usersSlice";
+import { fetchUsers, removeUser } from "../state/usersSlice";
 import { User, Users } from "../state/usersSlice.interface";
 import { useNavigate } from "react-router-dom";
+import { deleteUserService } from "../services/deleteUser";
 
 export function UsersLayout() {
   const navigate = useNavigate();
@@ -33,6 +34,19 @@ export function UsersLayout() {
     if (selected.length > 0) navigate(`/edition/${selected[0]}`);
   };
 
+  const handleDeleteUser = () => {
+    if (selected.length > 0) {
+      deleteUserService(selected[0])
+        .then(() => {
+          dispatch(removeUser(selected[0]));
+          setSelected([]);
+        })
+        .catch((error) => {
+          alert(error);
+        });
+    }
+  };
+
   return (
     <>
       <Title title="Lista de Usuários">
@@ -45,7 +59,12 @@ export function UsersLayout() {
           >
             <EditIcon />
           </IconButton>
-          <IconButton color="default" aria-label="delete">
+          <IconButton
+            onClick={handleDeleteUser}
+            disabled={selected.length <= 0}
+            color="default"
+            aria-label="delete"
+          >
             <DeleteIcon />
           </IconButton>
         </div>
