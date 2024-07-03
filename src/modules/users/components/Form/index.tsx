@@ -1,18 +1,13 @@
 import { Button, TextField } from "@mui/material";
 import { FieldValues, useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
-
-interface UserFormProps {
-  textBtnSend: string;
-  textBtnBack: string;
-  routeBack?: string;
-  routeSend?: string;
-}
+import { UserFormData, UserFormProps } from "./index.interface";
 
 const UserForm = ({
   textBtnSend = "Enviar",
   textBtnBack = "Voltar",
   routeBack = "/",
+  submit,
 }: UserFormProps) => {
   const {
     register,
@@ -21,7 +16,7 @@ const UserForm = ({
   } = useForm();
 
   const onSubmit = (data: FieldValues) => {
-    console.log(data);
+    submit(data as UserFormData);
   };
 
   return (
@@ -57,11 +52,11 @@ const UserForm = ({
         <div className="col-span-1">
           <TextField
             autoComplete="on"
-            id="userName"
+            id="username"
             label="Nome de usuário"
             variant="outlined"
             className="w-full"
-            {...register("userName", {
+            {...register("username", {
               required: "Nome de usuário é obrigatório",
               pattern: {
                 value: /^\w+$/,
@@ -69,9 +64,9 @@ const UserForm = ({
               },
             })}
           />
-          {errors.userName && (
+          {errors.username && (
             <p className="text-red-500 text-xs italic">
-              {errors.userName.message as React.ReactNode}
+              {errors.username.message as React.ReactNode}
             </p>
           )}
         </div>

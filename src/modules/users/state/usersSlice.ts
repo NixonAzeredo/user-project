@@ -3,9 +3,10 @@ import {
   createEntityAdapter,
   createSlice,
 } from "@reduxjs/toolkit";
-import { Users } from "./usersSlice.interface";
+import { USERURL } from "../configs/url.config";
+import { User, Users } from "./usersSlice.interface";
 
-const usersAdapter = createEntityAdapter();
+const usersAdapter = createEntityAdapter<User>();
 
 const initialState = usersAdapter.getInitialState<{
   status: "idle" | "loading" | "succeeded" | "failed";
@@ -20,7 +21,7 @@ export const fetchUsers = createAsyncThunk<
   void,
   { rejectValue: string }
 >("users/fetchUsers", async () => {
-  const response = await fetch("https://jsonplaceholder.typicode.com/users");
+  const response = await fetch(USERURL);
   return response.json();
 });
 

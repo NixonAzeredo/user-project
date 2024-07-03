@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import { AppDispatch, RootState } from "../../../core/store.interface";
 import { Title } from "../../../shared/components/Title";
 import { UsersTable } from "../components/Table";
-import { COLUMNS } from "../configs/tableConfig";
+import { COLUMNS } from "../configs/table.config";
 import { fetchUsers } from "../state/usersSlice";
 import { User, Users } from "../state/usersSlice.interface";
 
@@ -21,7 +21,6 @@ export function UsersLayout() {
     if (status === "idle") {
       dispatch(fetchUsers());
     }
-    console.log(Object.values(users));
   }, [status, dispatch, error, users]);
 
   const handleSelected = (selected: number[]) => {
