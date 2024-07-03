@@ -48,7 +48,7 @@ const UserForm = ({
           </h2>{" "}
           <hr />
         </div>
-        <div className="col-span-2 sm:col-span-2">
+        <div className="col-span-4 sm:col-span-2">
           <TextField
             autoComplete="on"
             id="name"
@@ -69,7 +69,7 @@ const UserForm = ({
             </p>
           )}
         </div>
-        <div className="col-span-2 sm:col-span-2">
+        <div className="col-span-4 sm:col-span-2">
           <TextField
             autoComplete="on"
             id="username"
@@ -90,7 +90,7 @@ const UserForm = ({
             </p>
           )}
         </div>
-        <div className="col-span-1">
+        <div className="col-span-2 sm:col-span-1">
           <TextField
             autoComplete="on"
             id="phone"
@@ -132,7 +132,7 @@ const UserForm = ({
             </p>
           )}
         </div>
-        <div className="col-span-1 sm:col-span-1">
+        <div className="col-span-4 sm:col-span-1">
           <TextField
             autoComplete="on"
             id="website"
@@ -199,7 +199,7 @@ const UserForm = ({
           <h2 className="text-lg font-semibold text-gray-800 mb-2">Empresa</h2>{" "}
           <hr />
         </div>
-        <div className="col-span-1">
+        <div className="col-span-4 sm:col-span-1">
           <TextField
             id="companyName"
             label="Nome da empresa"
@@ -217,7 +217,7 @@ const UserForm = ({
             {...register("catchPhrase")}
           />
         </div>
-        <div className="col-span-1">
+        <div className="col-span-2 sm:col-span-1">
           <TextField
             id="bs"
             label="BS"
