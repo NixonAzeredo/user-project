@@ -12,7 +12,6 @@ export function Register() {
   const navigate = useNavigate();
 
   const handleCreateUser = (data: UserFormData) => {
-    console.log(data);
     addUserService(data).then(({ success, user }) => {
       if (success && user) {
         dispatch(
@@ -49,6 +48,7 @@ export function Register() {
     <>
       <Title title="Cadastro de Usuários" />
       <UserForm
+        user={null}
         textBtnBack="Cancelar"
         textBtnSend="Enviar"
         submit={handleCreateUser}

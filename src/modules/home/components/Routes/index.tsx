@@ -8,7 +8,7 @@ export function MainRoutes() {
       <Route path="/" element={<Outlet />}>
         <Route index element={<UsersLayout />} />
         <Route path="register" element={<Register />} />
-        <Route path="edition" element={<Edit />} />
+        <Route path="edition/:userId" element={<Edit />} />
       </Route>
     </Routes>
   );

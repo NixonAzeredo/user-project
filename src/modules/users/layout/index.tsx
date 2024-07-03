@@ -1,17 +1,19 @@
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import { IconButton } from "@mui/material";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 import { AppDispatch, RootState } from "../../../core/store.interface";
 import { Title } from "../../../shared/components/Title";
 import { UsersTable } from "../components/Table";
 import { COLUMNS } from "../configs/table.config";
 import { fetchUsers } from "../state/usersSlice";
 import { User, Users } from "../state/usersSlice.interface";
+import { useNavigate } from "react-router-dom";
 
 export function UsersLayout() {
+  const navigate = useNavigate();
+  const [selected, setSelected] = useState<number[]>([]);
   const dispatch: AppDispatch = useDispatch();
   const users = useSelector((state: RootState) => state.users.entities);
   const status = useSelector((state: RootState) => state.users.status);
@@ -24,18 +26,25 @@ export function UsersLayout() {
   }, [status, dispatch, error, users]);
 
   const handleSelected = (selected: number[]) => {
-    console.log(selected);
+    setSelected(selected);
+  };
+
+  const handleNavigateToEdit = () => {
+    if (selected.length > 0) navigate(`/edition/${selected[0]}`);
   };
 
   return (
     <>
       <Title title="Lista de Usuários">
         <div>
-          <Link to="edition">
-            <IconButton color="default" aria-label="edit">
-              <EditIcon />
-            </IconButton>
-          </Link>
+          <IconButton
+            onClick={handleNavigateToEdit}
+            disabled={selected.length <= 0}
+            color="default"
+            aria-label="edit"
+          >
+            <EditIcon />
+          </IconButton>
           <IconButton color="default" aria-label="delete">
             <DeleteIcon />
           </IconButton>

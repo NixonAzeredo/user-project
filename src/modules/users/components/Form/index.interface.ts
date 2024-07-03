@@ -1,5 +1,4 @@
 export interface UserFormData {
-  address: string;
   bs: string;
   catchPhrase: string;
   city: string;
@@ -19,5 +18,6 @@ export interface UserFormProps {
   textBtnBack: string;
   routeBack?: string;
   routeSend?: string;
+  user: UserFormData | null;
   submit: (userData: UserFormData) => void;
 }

@@ -1,4 +1,5 @@
 import { Button, TextField } from "@mui/material";
+import { useEffect } from "react";
 import { FieldValues, useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { UserFormData, UserFormProps } from "./index.interface";
@@ -7,17 +8,36 @@ const UserForm = ({
   textBtnSend = "Enviar",
   textBtnBack = "Voltar",
   routeBack = "/",
+  user,
   submit,
 }: UserFormProps) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
+    setValue,
   } = useForm();
 
   const onSubmit = (data: FieldValues) => {
     submit(data as UserFormData);
   };
+
+  useEffect(() => {
+    if (user) {
+      setValue("name", user.name);
+      setValue("username", user.username);
+      setValue("phone", user.phone);
+      setValue("email", user.email);
+      setValue("website", user.website);
+      setValue("zipcode", user.zipcode);
+      setValue("city", user.city);
+      setValue("street", user.street);
+      setValue("suite", user.suite);
+      setValue("companyName", user.companyName);
+      setValue("catchPhrase", user.catchPhrase);
+      setValue("bs", user.bs);
+    }
+  }, [user, setValue]);
 
   return (
     <form className="p-4" onSubmit={handleSubmit(onSubmit)}>
@@ -165,17 +185,7 @@ const UserForm = ({
             {...register("street")}
           />
         </div>
-        <div className="col-span-2">
-          <TextField
-            autoComplete="on"
-            id="address"
-            label="Endereço"
-            variant="outlined"
-            className="w-full"
-            {...register("address")}
-          />
-        </div>
-        <div className="col-span-1">
+        <div className="col-span-3">
           <TextField
             id="suite"
             label="Complemento"
